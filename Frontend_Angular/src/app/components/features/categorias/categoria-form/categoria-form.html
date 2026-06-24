@@ -1,0 +1,88 @@
+<div class="contenedor">
+
+  @if (esEdicion) {
+    <h1>Actualizar categoría</h1>
+  } @else {
+    <h1>Nueva categoría</h1>
+  }
+
+  @if (mensajeError) {
+    <p class="mensaje-error">{{ mensajeError }}</p>
+  }
+
+  <form [formGroup]="formulario" (ngSubmit)="guardar()">
+
+    <div class="campo">
+      <label for="nombreCategoria">Nombre</label>
+
+      <input
+        id="nombreCategoria"
+        type="text"
+        formControlName="nombreCategoria">
+
+      @if (
+        formulario.get('nombreCategoria')?.touched &&
+        formulario.get('nombreCategoria')?.hasError('required')
+      ) {
+        <small>El nombre es obligatorio.</small>
+      }
+
+      @if (
+        formulario.get('nombreCategoria')?.touched &&
+        formulario.get('nombreCategoria')?.hasError('minlength')
+      ) {
+        <small>El nombre debe tener al menos 4 caracteres.</small>
+      }
+
+      @if (
+        formulario.get('nombreCategoria')?.touched &&
+        formulario.get('nombreCategoria')?.hasError('maxlength')
+      ) {
+        <small>El nombre no puede superar los 50 caracteres.</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="descripcionCategoria">Descripción</label>
+
+      <textarea
+        id="descripcionCategoria"
+        rows="4"
+        formControlName="descripcionCategoria">
+      </textarea>
+
+      @if (
+        formulario.get('descripcionCategoria')?.touched &&
+        formulario.get('descripcionCategoria')?.hasError('required')
+      ) {
+        <small>La descripción es obligatoria.</small>
+      }
+    </div>
+
+    <div class="acciones">
+      <button
+        class="boton-guardar"
+        type="submit"
+        [disabled]="guardando">
+
+        @if (guardando) {
+          Guardando...
+        } @else if (esEdicion) {
+          Actualizar
+        } @else {
+          Guardar
+        }
+
+      </button>
+
+      <button
+        class="boton-cancelar"
+        type="button"
+        (click)="cancelar()">
+        Cancelar
+      </button>
+    </div>
+
+  </form>
+
+</div>

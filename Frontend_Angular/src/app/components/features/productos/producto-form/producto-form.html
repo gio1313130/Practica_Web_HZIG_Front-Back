@@ -1,0 +1,189 @@
+<div class="contenedor">
+
+  @if (esEdicion) {
+    <h1>Actualizar producto</h1>
+  } @else {
+    <h1>Nuevo producto</h1>
+  }
+
+  @if (mensajeError) {
+    <p class="mensaje-error">
+      {{ mensajeError }}
+    </p>
+  }
+
+  <form
+    [formGroup]="formulario"
+    (ngSubmit)="guardar()">
+
+    <div class="campo">
+      <label for="nombreProducto">
+        Nombre
+      </label>
+
+      <input
+        id="nombreProducto"
+        type="text"
+        formControlName="nombreProducto">
+
+      @if (
+        formulario.get('nombreProducto')?.touched &&
+        formulario.get('nombreProducto')?.hasError('required')
+      ) {
+        <small>
+          El nombre es obligatorio.
+        </small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="descripcionProducto">
+        Descripción
+      </label>
+
+      <textarea
+        id="descripcionProducto"
+        rows="4"
+        formControlName="descripcionProducto">
+      </textarea>
+
+      @if (
+        formulario.get('descripcionProducto')?.touched &&
+        formulario.get('descripcionProducto')?.hasError('required')
+      ) {
+        <small>
+          La descripción es obligatoria.
+        </small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="precioProducto">
+        Precio
+      </label>
+
+      <input
+        id="precioProducto"
+        type="number"
+        min="0"
+        step="0.01"
+        formControlName="precioProducto">
+
+      @if (
+        formulario.get('precioProducto')?.touched &&
+        formulario.get('precioProducto')?.hasError('required')
+      ) {
+        <small>
+          El precio es obligatorio.
+        </small>
+      }
+
+      @if (
+        formulario.get('precioProducto')?.touched &&
+        formulario.get('precioProducto')?.hasError('min')
+      ) {
+        <small>
+          El precio no puede ser negativo.
+        </small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="existencia">
+        Existencia
+      </label>
+
+      <input
+        id="existencia"
+        type="number"
+        min="0"
+        step="1"
+        formControlName="existencia">
+
+      @if (
+        formulario.get('existencia')?.touched &&
+        formulario.get('existencia')?.hasError('required')
+      ) {
+        <small>
+          La existencia es obligatoria.
+        </small>
+      }
+
+      @if (
+        formulario.get('existencia')?.touched &&
+        formulario.get('existencia')?.hasError('min')
+      ) {
+        <small>
+          La existencia no puede ser negativa.
+        </small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="idCategoria">
+        Categoría
+      </label>
+
+      <select
+        id="idCategoria"
+        formControlName="idCategoria">
+
+        <option [ngValue]="null">
+          Seleccione una categoría
+        </option>
+
+        @for (
+          categoria of categorias;
+          track categoria.idCategoria
+        ) {
+          <option
+            [ngValue]="categoria.idCategoria">
+            {{ categoria.nombreCategoria }}
+          </option>
+        }
+
+      </select>
+
+      @if (cargandoCategorias) {
+        <small class="mensaje-carga">
+          Cargando categorías...
+        </small>
+      }
+
+      @if (
+        formulario.get('idCategoria')?.touched &&
+        formulario.get('idCategoria')?.hasError('required')
+      ) {
+        <small>
+          Debes seleccionar una categoría.
+        </small>
+      }
+    </div>
+
+    <div class="acciones">
+      <button
+        class="boton-guardar"
+        type="submit"
+        [disabled]="guardando">
+
+        @if (guardando) {
+          Guardando...
+        } @else if (esEdicion) {
+          Actualizar
+        } @else {
+          Guardar
+        }
+
+      </button>
+
+      <button
+        class="boton-cancelar"
+        type="button"
+        (click)="cancelar()">
+        Cancelar
+      </button>
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,60 @@
+<div class="contenedor">
+
+  <div class="encabezado">
+    <h1>Lista de categorías</h1>
+
+    <a
+      class="boton-nuevo"
+      routerLink="/categorias/nueva">
+      Nueva categoría
+    </a>
+  </div>
+
+  @if (cargando) {
+    <p>Cargando categorías...</p>
+  } @else if (mensajeError) {
+    <p class="mensaje-error">{{ mensajeError }}</p>
+  } @else if (categorias.length === 0) {
+    <p>No hay categorías registradas.</p>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (categoria of categorias; track categoria.idCategoria) {
+          <tr>
+            <td>{{ categoria.idCategoria }}</td>
+            <td>{{ categoria.nombreCategoria }}</td>
+            <td>{{ categoria.descripcionCategoria }}</td>
+
+            <td class="acciones">
+              <a
+                class="boton-actualizar"
+                [routerLink]="[
+                  '/categorias/editar',
+                  categoria.idCategoria
+                ]">
+                Actualizar
+              </a>
+
+              <button
+                class="boton-eliminar"
+                type="button"
+                (click)="eliminarCategoria(categoria.idCategoria)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+</div>

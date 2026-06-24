@@ -1,0 +1,88 @@
+.contenedor {
+  width: 90%;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  background-color: white;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.campo {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #bbbbbb;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+textarea {
+  resize: vertical;
+}
+
+small {
+  display: block;
+  margin-top: 5px;
+  color: #b00020;
+}
+
+.acciones {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+button {
+  border: none;
+  padding: 9px 16px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.boton-guardar {
+  background-color: #1976d2;
+}
+
+.boton-guardar:hover {
+  background-color: #155fa6;
+}
+
+.boton-guardar:disabled {
+  background-color: #888888;
+  cursor: not-allowed;
+}
+
+.boton-cancelar {
+  background-color: #666666;
+}
+
+.boton-cancelar:hover {
+  background-color: #444444;
+}
+
+.mensaje-error {
+  padding: 10px;
+  color: #b00020;
+  background-color: #ffe5e5;
+  border: 1px solid #e0aaaa;
+}

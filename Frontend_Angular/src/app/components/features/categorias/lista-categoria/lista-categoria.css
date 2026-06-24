@@ -1,0 +1,94 @@
+.contenedor {
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+th,
+td {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #eeeeee;
+}
+
+tr:hover {
+  background-color: #f7f7f7;
+}
+
+.boton-eliminar {
+  border: none;
+  padding: 7px 12px;
+  background-color: #c62828;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.boton-eliminar:hover {
+  background-color: #9f1f1f;
+}
+
+.mensaje-error {
+  padding: 10px;
+  color: #b00020;
+  background-color: #ffe5e5;
+  border: 1px solid #e0aaaa;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.encabezado h1 {
+  margin: 0;
+}
+
+.boton-nuevo,
+.boton-actualizar {
+  display: inline-block;
+  padding: 8px 13px;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+}
+
+.boton-nuevo {
+  background-color: #1976d2;
+}
+
+.boton-nuevo:hover {
+  background-color: #155fa6;
+}
+
+.boton-actualizar {
+  background-color: #06a10b;
+}
+
+.boton-actualizar:hover {
+  background-color: #06a10b;
+}
+
+.acciones {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

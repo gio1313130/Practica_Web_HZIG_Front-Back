@@ -1,0 +1,11 @@
+.navbar {
+  border-bottom: 1px solid #dddddd;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.nav-link.active {
+  font-weight: bold;
+}

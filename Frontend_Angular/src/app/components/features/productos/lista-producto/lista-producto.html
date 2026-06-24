@@ -1,0 +1,82 @@
+<div class="contenedor">
+
+  <div class="encabezado">
+    <h1>Lista de productos</h1>
+
+    <a
+      class="boton-nuevo"
+      routerLink="/productos/nuevo">
+      Nuevo producto
+    </a>
+  </div>
+
+  @if (cargando) {
+    <p>Cargando productos...</p>
+  } @else if (mensajeError) {
+    <p class="mensaje-error">
+      {{ mensajeError }}
+    </p>
+  } @else if (productos.length === 0) {
+    <p>No hay productos registrados.</p>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Existencia</th>
+          <th>Categoría</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (
+          producto of productos;
+          track producto.idProducto
+        ) {
+          <tr>
+            <td>{{ producto.idProducto }}</td>
+
+            <td>{{ producto.nombreProducto }}</td>
+
+            <td>
+              {{ producto.descripcionProducto }}
+            </td>
+
+            <td>
+              $ {{ producto.precioProducto }}
+            </td>
+
+            <td>{{ producto.existencia }}</td>
+
+            <td>
+              {{ producto.idCategoria.nombreCategoria }}
+            </td>
+
+            <td class="acciones">
+              <a
+                class="boton-actualizar"
+                [routerLink]="[
+                  '/productos/editar',
+                  producto.idProducto
+                ]">
+                Actualizar
+              </a>
+
+              <button
+                      class="boton-eliminar"
+                      type="button"
+              (click)="eliminarProducto(producto.idProducto)">
+                 Eliminar
+          </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+</div>
